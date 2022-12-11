@@ -1,0 +1,14 @@
+{
+    "name": "file-manager",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "start": "node index.js",
+        "test": "node index.js -- --username=your_username"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC"
+}
