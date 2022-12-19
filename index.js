@@ -1,27 +1,21 @@
-import { config } from './config.js'
 import * as readline from 'readline';
 import { stdin as input, stdout as output } from 'process';
-import { up } from './modules/nwdActions.js'
-
-console.log(`Welcome to the File Manager, ${config.username}!`);
-console.log(`You are currently in ${config.currentPath}`)
+import { config } from './config.js';
+import { controller } from './controller.js';
 
 const rl = readline.createInterface({ input, output });
 
-console.log(` ${config.username}, please, enter the command!`)
+console.log(`Welcome to the File Manager, ${config.user}!`);
+console.log(`You are currently in ${config.currentPath}`);
 
 rl.on('line', (input) => {
     if (input.trim() === '.exit') {
-        console.log(` Thank you for using File Manager, ${config.username}!`);
+        console.log(`Thank you for using File Manager, ${config.user}!`);
         rl.close();
     } else {
         try {
-            switch (input) {
-                case 'up':
-                    up();
-                    break;
-            }
-
+            //console.log(input)
+            controller(input);
         } catch (e) {
             console.log('Operation failed');
         }
@@ -29,10 +23,6 @@ rl.on('line', (input) => {
 });
 
 rl.on('SIGINT', () => {
-    rl.question(
-        'Are you sure you want to exit? ',
-        (answer) => {
-            if (answer.match(/^y(es)?$/i)) rl.close();
-        }
-    );
+    console.log(`Thank you for using File Manager, ${config.user}!`);
+    rl.close();
 });
